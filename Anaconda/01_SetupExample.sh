@@ -49,13 +49,29 @@ then
     echo ">>>Environment $NAME_ENVIRONMENT was NOT activated"
     exit 1
 else
-    echo ">>>Environment $NAME_ENVIRONMENT was NOT activated successfully :)"
+    echo ">>>Environment $NAME_ENVIRONMENT was activated successfully :)"
 fi
 
-echo "To install pip requirements"
+echo ">To install pip requirements"
+pip_exist=`pip --version`
+if [ -z "$pip_exist"]
+then
+    echo ">>>pip IS NOT INSTALLED"
+    exit 1
+fi
 pip install -r requirements.txt
-echo $?
+echo ">>>Code after installation of python requirements $?"
 
 echo "To install npm dependencies"
-echo $?
+npm_exist=`npm --version`
+if [ -z "$npm_exist" ]
+then
+    echo "npm IS NOT INSTALLED"
+    exit 1
+fi
+echo ">>> Code after installation of npm dependencies $?"
+npm install
+echo ">>>Code after installation of npm dependencies $?"
+
+#sudo apt install npm
 
